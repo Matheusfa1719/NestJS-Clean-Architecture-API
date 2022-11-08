@@ -3,12 +3,14 @@ import { User } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
 import { CreateUserDto, UpdateUserDto } from '../../core/dtos';
 import { UserFactoryService } from './user-factory.service';
+import { HashingService } from '../../services/hashing/hashing.service';
 
 @Injectable()
 export class UserUseCases {
   constructor(
     private dataServices: IDataServices,
     private userFactoryService: UserFactoryService,
+    private hashingService: HashingService,
   ) {}
 
   getAllUsers(): Promise<User[]> {
@@ -19,8 +21,9 @@ export class UserUseCases {
     return this.dataServices.users.get(id);
   }
 
-  createUser(createUserDto: CreateUserDto): Promise<User> {
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userFactoryService.createNewUser(createUserDto);
+    user.password = await this.hashingService.hash(user.password);
     return this.dataServices.users.create(user);
   }
 
