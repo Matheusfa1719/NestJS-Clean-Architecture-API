@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { AppController, GcemController } from './controllers';
 import { UserController } from './controllers/user.controller';
 import { DataServicesModule } from './services/data-services/data-services.module';
@@ -9,7 +8,6 @@ import { HashingModule } from './services/hashing/hashing.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
     DataServicesModule,
     UserUseCasesModule,
     GcemUseCasesModule,
