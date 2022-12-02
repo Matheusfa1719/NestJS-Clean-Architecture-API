@@ -1,10 +1,15 @@
 import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from '../core/dtos';
+import { CreateUserDto, LoginDto, UpdateUserDto } from '../core/dtos';
 import { UserUseCases } from '../use-cases/user/user.use-case';
 
 @Controller('api/user')
 export class UserController {
   constructor(private userUseCases: UserUseCases) {}
+
+  @Post('/login')
+  login(@Body() loginDto: LoginDto) {
+    return this.userUseCases.login(loginDto);
+  }
 
   @Get()
   async getAll() {

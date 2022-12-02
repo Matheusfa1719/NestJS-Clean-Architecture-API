@@ -4,12 +4,13 @@ import { Model } from 'mongoose';
 import { IDataServices } from '../../../core';
 import { MongoGenericRepository } from './mongo-generic-repository';
 import { Gcem, GcemDocument, User, UserDocument } from './model';
+import { MongoUserRepository } from './mongo-user-generic.repository';
 
 @Injectable()
 export class MongoDataServices
   implements IDataServices, OnApplicationBootstrap
 {
-  users: MongoGenericRepository<User>;
+  users: MongoUserRepository;
   gcems: MongoGenericRepository<Gcem>;
 
   constructor(
@@ -20,7 +21,7 @@ export class MongoDataServices
   ) {}
   //Olhar exemplo para casar os dados
   onApplicationBootstrap() {
-    this.users = new MongoGenericRepository<User>(this.UserRepository);
+    this.users = new MongoUserRepository(this.UserRepository);
     this.gcems = new MongoGenericRepository<Gcem>(this.GcemRepository); //Casar gcem com user para ver quem é o lider
   }
 }
