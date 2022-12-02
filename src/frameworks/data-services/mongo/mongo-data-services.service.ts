@@ -22,6 +22,8 @@ export class MongoDataServices
   //Olhar exemplo para casar os dados
   onApplicationBootstrap() {
     this.users = new MongoUserRepository(this.UserRepository);
-    this.gcems = new MongoGenericRepository<Gcem>(this.GcemRepository); //Casar gcem com user para ver quem é o lider
+    this.gcems = new MongoGenericRepository<Gcem>(this.GcemRepository, [
+      'User',
+    ]);
   }
 }

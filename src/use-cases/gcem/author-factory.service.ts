@@ -9,6 +9,7 @@ export class GcemFactoryService {
     newGcem.name = createGcemDto.name;
     newGcem.meetingDay = createGcemDto.meetingDay;
     newGcem.meetingTime = createGcemDto.meetingTime;
+    newGcem.leader = createGcemDto.leader;
 
     return newGcem;
   }

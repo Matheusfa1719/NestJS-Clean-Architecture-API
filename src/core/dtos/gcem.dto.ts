@@ -13,6 +13,9 @@ export class CreateGcemDto {
   @IsString()
   @IsNotEmpty()
   meetingTime: string;
+
+  @IsNotEmpty()
+  leader: any;
 }
 
 export class UpdateGcemDto extends PartialType(CreateGcemDto) {}
