@@ -1,7 +1,9 @@
 import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateGcemDto, UpdateGcemDto } from '../core/dtos';
 import { GcemUseCases } from '../use-cases/gcem/gcem.use-case';
 
+@ApiTags('Gcem')
 @Controller('api/gcem')
 export class GcemController {
   constructor(private gcemUseCases: GcemUseCases) {}
